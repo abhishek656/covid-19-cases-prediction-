@@ -1,0 +1,3319 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>covid 19 prediction using polynomial regression</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        .home {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* rgb(187, 180, 178); */
+
+
+        }
+
+
+
+
+        .header {
+            box-shadow: 1px 1px 5px 4px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            background-color: rgb(187, 180, 178);
+            top: 202px;
+            right: 398px;
+            border-radius: 25px;
+            /* clip-path: polygon(0 10% , 0 100% , 0 10% ); */
+
+        }
+
+
+
+
+
+        .header p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: lighter;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+
+
+        .box {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: bisque(40, 204, 190);
+            border-radius: 25px;
+            /* background-color:rgb(187, 180, 178);  */
+            /* background-color: chartreuse; */
+            background-color: rgba(204, 30, 131, 0.966);
+
+            position: absolute;
+            top: 324px;
+            right: 542px;
+            height: 390px;
+            width: 537px;
+        }
+
+        .box form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+
+        .heading label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: lighter;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+
+            color: black;
+            background-color: blueviolet;
+            box-shadow: 2px 2px 10px 5px black;
+            border-radius: 10px;
+        }
+
+        .heading label:hover {
+            color: black;
+
+        }
+
+
+        .text input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+            font-style: normal;
+        }
+
+        .result h2 {
+            height: 103px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+        .content {
+
+            box-shadow: 1px 1px 5px 3px black;
+
+
+
+            height: 149px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            align-items: center;
+            text-align: center;
+
+            font-size: xx-large;
+            font-weight: bolder;
+            font-family: cursive;
+            color: red;
+
+
+
+        }
+
+        .content p {
+            margin: 0%;
+            padding: 0%;
+        }
+
+
+
+
+
+
+
+
+
+
+
+        /* covid 19 prediction for confiremd cases in russia using polynomial regression project */
+
+        .home1 {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* border-radius: 30px; */
+            /* border: 2px solid black; */
+
+
+        }
+
+        .header1 {
+
+            box-shadow: 1px 1px 5px 4px black;
+            background-color: rgb(187, 180, 178);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            /* background-color:rgb(211, 35, 102); */
+
+            top: 920px;
+            right: 404px;
+            border-radius: 25px;
+        }
+
+        .header1 p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: normal;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .box1 {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: rgba(204, 30, 131, 0.966);
+
+            border-radius: 25px;
+
+            position: absolute;
+            top: 1099px;
+            right: 542px;
+            height: 390px;
+            width: 537px;
+        }
+
+        .box1 form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* #heading{
+           
+        }  */
+        .heading1 label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: bold;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            background-color: blueviolet;
+
+            color: black;
+            box-shadow: 1px 1px 5px 3px black;
+            border-radius: 10px;
+        }
+
+
+
+
+        .text1 input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text1 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit1 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit1 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result1 h2 {
+            height: 103px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+
+
+
+
+
+        /* covid 19 prediction for Active cases in russia using polynomial regression project */
+
+        .home2 {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* border-radius: 30px; */
+            /* border: 2px solid black; */
+
+
+        }
+
+        .header2 {
+
+            box-shadow: 1px 1px 5px 4px black;
+            background-color: rgb(187, 180, 178);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            /* background-color:rgb(211, 35, 102); */
+
+            bottom: -1000px;
+            right: 404px;
+            border-radius: 25px;
+        }
+
+
+        .header2 p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: normal;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .box2 {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: rgba(204, 30, 131, 0.966);
+
+            border-radius: 25px;
+
+            position: absolute;
+            bottom: -1500px;
+            right: 542px;
+            height: 390px;
+            width: 537px;
+        }
+
+        .box2 form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* #heading{
+           
+        }  */
+        .heading2 label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: bold;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            background-color: blueviolet;
+
+            color: black;
+            box-shadow: 1px 1px 5px 3px black;
+            border-radius: 10px;
+        }
+
+
+
+
+        .text2 input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text2 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit2 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit2 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result2 h2 {
+            height: 103px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+
+
+
+
+
+        .text2 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit2 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit2 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result2 h2 {
+            height: 103px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+
+
+
+
+
+
+        /* covid 19 prediction for deaths  cases in russia using polynomial regression project */
+
+        .home3 {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* border-radius: 30px; */
+            /* border: 2px solid black; */
+
+
+        }
+
+        .header3 {
+
+            box-shadow: 1px 1px 5px 4px black;
+            background-color: rgb(187, 180, 178);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            /* background-color:rgb(211, 35, 102); */
+
+            bottom: -1800px;
+            right: 404px;
+            border-radius: 25px;
+        }
+
+
+        .header3 p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: normal;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .box3 {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: rgba(204, 30, 131, 0.966);
+
+            border-radius: 25px;
+
+            position: absolute;
+            bottom: -2300px;
+            right: 542px;
+            height: 390px;
+            width: 537px;
+        }
+
+        .box3 form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* #heading{
+           
+        }  */
+        .headings3 label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: bold;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            background-color: blueviolet;
+
+            color: black;
+            box-shadow: 1px 1px 5px 3px black;
+            border-radius: 10px;
+        }
+
+
+
+
+        .text3 input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text3 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit3 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit3 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result3 h2 {
+            height: 103px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+
+
+
+
+
+
+
+
+        /* covid 19 prediction for New cases in russia using polynomial regression project */
+
+        .home4 {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* border-radius: 30px; */
+            /* border: 2px solid black; */
+
+
+        }
+
+        .header4 {
+
+            box-shadow: 1px 1px 5px 4px black;
+            background-color: rgb(187, 180, 178);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            /* background-color:rgb(211, 35, 102); */
+
+            bottom: -3400px;
+            right: 404px;
+            border-radius: 25px;
+        }
+
+
+        .header4 p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: normal;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .box4 {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: rgba(204, 30, 131, 0.966);
+
+            border-radius: 25px;
+
+            position: absolute;
+            bottom: -3900px;
+            right: 542px;
+            height: 390px;
+            width: 537px;
+        }
+
+        .box4 form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* #heading{
+           
+        }  */
+        .headings4 label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: bold;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            background-color: blueviolet;
+
+            color: black;
+            box-shadow: 1px 1px 5px 3px black;
+            border-radius: 10px;
+        }
+
+
+
+
+        .text4 input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text4 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit4 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit4 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result4 h2 {
+            height: 103px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+
+
+
+
+
+
+        /* covid 19 prediction for New deaths in russia using polynomial regression project */
+
+        .home5 {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* border-radius: 30px; */
+            /* border: 2px solid black; */
+
+
+        }
+
+        .header5 {
+
+            box-shadow: 1px 1px 5px 4px black;
+            background-color: rgb(187, 180, 178);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            /* background-color:rgb(211, 35, 102); */
+
+            bottom: -4200px;
+            right: 404px;
+            border-radius: 25px;
+        }
+
+
+        .header5 p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: normal;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .box5 {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: rgba(204, 30, 131, 0.966);
+
+            border-radius: 25px;
+
+            position: absolute;
+            bottom: -4700px;
+            right: 542px;
+            height: 390px;
+            width: 537px;
+        }
+
+        .box5 form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* #heading{
+           
+        }  */
+        .headings5 label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: bold;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            background-color: blueviolet;
+
+            color: black;
+            box-shadow: 1px 1px 5px 3px black;
+            border-radius: 10px;
+        }
+
+
+
+
+        .text5 input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text5 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit5 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit5 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result5 h2 {
+            height: 103px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+
+
+
+
+
+
+
+        /* covid 19 prediction for New Recovered in russia using polynomial regression project */
+
+        .home6 {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* border-radius: 30px; */
+            /* border: 2px solid black; */
+
+
+        }
+
+        .header6 {
+
+            box-shadow: 1px 1px 5px 4px black;
+            background-color: rgb(187, 180, 178);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            /* background-color:rgb(211, 35, 102); */
+
+            bottom: -5000px;
+            right: 404px;
+            border-radius: 25px;
+        }
+
+
+        .header6 p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: normal;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .box6 {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: rgba(204, 30, 131, 0.966);
+
+            border-radius: 25px;
+
+            position: absolute;
+            bottom: -5500px;
+            right: 542px;
+            height: 390px;
+            width: 537px;
+        }
+
+        .box6 form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* #heading{
+           
+        }  */
+        .headings6 label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: bold;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            background-color: blueviolet;
+
+            color: black;
+            box-shadow: 1px 1px 5px 3px black;
+            border-radius: 10px;
+        }
+
+
+
+
+        .text6 input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text6 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit6 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit6 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result6 h2 {
+            height: 103px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+
+
+
+
+
+
+
+        /* covid 19 prediction for Recovered in russia using polynomial regression project */
+
+        .home7 {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* border-radius: 30px; */
+            /* border: 2px solid black; */
+
+
+        }
+
+        .header7 {
+
+            box-shadow: 1px 1px 5px 4px black;
+            background-color: rgb(187, 180, 178);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            /* background-color:rgb(211, 35, 102); */
+
+            bottom: -2600px;
+            right: 404px;
+            border-radius: 25px;
+        }
+
+
+        .header7 p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: normal;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .box7 {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: rgba(204, 30, 131, 0.966);
+
+            border-radius: 25px;
+
+            position: absolute;
+            bottom: -3100px;
+            right: 542px;
+            height: 390px;
+            width: 537px;
+        }
+
+        .box7 form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* #heading{
+           
+        }  */
+        .headings7 label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: bold;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            background-color: blueviolet;
+
+            color: black;
+            box-shadow: 1px 1px 5px 3px black;
+            border-radius: 10px;
+        }
+
+
+
+
+        .text7 input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text7 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit7 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit7 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result7 h2 {
+            height: 103px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+
+
+
+
+
+
+
+
+
+
+        /* covid 19 prediction for confiremd cases in  Iran using polynomial regression project */
+
+        .home8 {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* border-radius: 30px; */
+            /* border: 2px solid black; */
+
+
+        }
+
+        .header8 {
+
+            box-shadow: 1px 1px 5px 4px black;
+            background-color: rgb(187, 180, 178);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            /* background-color:rgb(211, 35, 102); */
+
+            bottom: -5800px;
+            right: 404px;
+            border-radius: 25px;
+        }
+
+
+        .header8 p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: normal;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .box8 {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: rgba(204, 30, 131, 0.966);
+
+            border-radius: 25px;
+
+            position: absolute;
+            bottom: -6300px;
+            right: 542px;
+            height: 390px;
+            width: 537px;
+        }
+
+        .box8 form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* #heading{
+           
+        }  */
+        .heading8 label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: bold;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            background-color: blueviolet;
+
+            color: black;
+            box-shadow: 1px 1px 5px 3px black;
+            border-radius: 10px;
+        }
+
+
+
+
+        .text8 input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text8 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit8 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit8 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result8 h2 {
+            height: 103px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+
+
+
+
+
+
+
+
+
+        /* covid 19 prediction for confiremd cases in  uttar pradesh using polynomial regression project */
+
+        .home9 {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* border-radius: 30px; */
+            /* border: 2px solid black; */
+
+
+        }
+
+        .header9 {
+
+            box-shadow: 1px 1px 5px 4px black;
+            background-color: rgb(187, 180, 178);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            /* background-color:rgb(211, 35, 102); */
+
+            bottom: -6600px;
+            right: 404px;
+            border-radius: 25px;
+        }
+
+
+        .header9 p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: normal;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .box9 {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: rgba(204, 30, 131, 0.966);
+
+            border-radius: 25px;
+
+            position: absolute;
+            bottom: -7100px;
+            right: 542px;
+            height: 424px;
+            width: 537px;
+        }
+
+        .box9 form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* #heading{
+           
+        }  */
+        .heading9 label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: bold;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            background-color: blueviolet;
+
+            color: black;
+            box-shadow: 1px 1px 5px 3px black;
+            border-radius: 10px;
+        }
+
+
+
+
+        .text9 input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text9 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit9 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit9 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result9 h2 {
+            height: 142px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 21px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+
+
+
+
+
+
+
+
+        /* covid 19 prediction for Active cases in  uttar pradesh using polynomial regression project */
+
+        .home10 {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* border-radius: 30px; */
+            /* border: 2px solid black; */
+
+
+        }
+
+        .header10 {
+
+            box-shadow: 1px 1px 5px 4px black;
+            background-color: rgb(187, 180, 178);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            /* background-color:rgb(211, 35, 102); */
+
+            bottom: -7400px;
+            right: 404px;
+            border-radius: 25px;
+        }
+
+
+        .header10 p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: normal;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .box10 {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: rgba(204, 30, 131, 0.966);
+
+            border-radius: 25px;
+
+            position: absolute;
+            bottom: -7900px;
+            right: 542px;
+            height: 390px;
+            width: 537px;
+        }
+
+        .box10 form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* #heading{
+           
+        }  */
+        .heading10 label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: bold;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            background-color: blueviolet;
+
+            color: black;
+            box-shadow: 1px 1px 5px 3px black;
+            border-radius: 10px;
+        }
+
+
+
+
+        .text10 input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text10 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit10 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit10 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result10 h2 {
+            height: 103px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+
+
+
+
+
+
+        /* covid 19 prediction for deaths cases in  uttar pradesh using polynomial regression project */
+
+        .home11 {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* border-radius: 30px; */
+            /* border: 2px solid black; */
+
+
+        }
+
+        .header11 {
+
+            box-shadow: 1px 1px 5px 4px black;
+            background-color: rgb(187, 180, 178);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            /* background-color:rgb(211, 35, 102); */
+
+            bottom: -8200px;
+            right: 404px;
+            border-radius: 25px;
+        }
+
+
+        .header11 p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: normal;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .box11 {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: rgba(204, 30, 131, 0.966);
+
+            border-radius: 25px;
+
+            position: absolute;
+            bottom: -8700px;
+            right: 542px;
+            height: 390px;
+            width: 537px;
+        }
+
+        .box11 form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* #heading{
+           
+        }  */
+        .heading11 label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: bold;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            background-color: blueviolet;
+
+            color: black;
+            box-shadow: 1px 1px 5px 3px black;
+            border-radius: 10px;
+        }
+
+
+
+
+        .text11 input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text11 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit11 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit11 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result11 h2 {
+            height: 103px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+
+
+
+
+
+
+
+        /* covid 19 prediction for Recovered cases in  uttar pradesh using polynomial regression project */
+
+        .home12 {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* border-radius: 30px; */
+            /* border: 2px solid black; */
+
+
+        }
+
+        .header12 {
+
+            box-shadow: 1px 1px 5px 4px black;
+            background-color: rgb(187, 180, 178);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            /* background-color:rgb(211, 35, 102); */
+
+            bottom: -9000px;
+            right: 404px;
+            border-radius: 25px;
+        }
+
+
+        .header12 p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: normal;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .box12 {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: rgba(204, 30, 131, 0.966);
+
+            border-radius: 25px;
+
+            position: absolute;
+            bottom: -9500px;
+            right: 542px;
+            height: 390px;
+            width: 537px;
+        }
+
+        .box12 form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* #heading{
+           
+        }  */
+        .heading12 label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: bold;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            background-color: blueviolet;
+
+            color: black;
+            box-shadow: 1px 1px 5px 3px black;
+            border-radius: 10px;
+        }
+
+
+
+
+        .text12 input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text12 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit12 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit12 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result12 h2 {
+            height: 103px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+
+
+
+
+
+
+        /* covid 19 prediction for New cases in  uttar pradesh using polynomial regression project */
+
+        .home13 {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* border-radius: 30px; */
+            /* border: 2px solid black; */
+
+
+        }
+
+        .header13 {
+
+            box-shadow: 1px 1px 5px 4px black;
+            background-color: rgb(187, 180, 178);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            /* background-color:rgb(211, 35, 102); */
+
+            bottom: -9800px;
+            right: 404px;
+            border-radius: 25px;
+        }
+
+
+        .header13 p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: normal;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .box13 {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: rgba(204, 30, 131, 0.966);
+
+            border-radius: 25px;
+
+            position: absolute;
+            bottom: -10300px;
+            right: 542px;
+            height: 390px;
+            width: 537px;
+        }
+
+        .box13 form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* #heading{
+           
+        }  */
+        .heading13 label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: bold;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            background-color: blueviolet;
+
+            color: black;
+            box-shadow: 1px 1px 5px 3px black;
+            border-radius: 10px;
+        }
+
+
+
+
+        .text13 input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text13 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit13 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit13 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result13 h2 {
+            height: 103px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+
+
+
+
+
+
+
+        /* covid 19 prediction for New Recovered in  uttar pradesh using polynomial regression project */
+
+        .home14 {
+            background-color: #096E99DE;
+            height: 800px;
+            box-shadow: 1px 1px 5px 3px black;
+            /* border-radius: 30px; */
+            /* border: 2px solid black; */
+
+
+        }
+
+        .header14 {
+
+            box-shadow: 1px 1px 5px 4px black;
+            background-color: rgb(187, 180, 178);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            width: 822px;
+            height: 95px;
+            text-align: center;
+            /* background-color:rgb(211, 35, 102); */
+
+            bottom: -10600px;
+            right: 404px;
+            border-radius: 25px;
+        }
+
+
+        .header14 p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: normal;
+            font-style: italic;
+            color: black;
+
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .box14 {
+            box-shadow: 1px 1px 10px 5px black;
+            background-color: rgba(204, 30, 131, 0.966);
+
+            border-radius: 25px;
+
+            position: absolute;
+            bottom: -11100px;
+            right: 542px;
+            height: 421px;
+            width: 537px;
+        }
+
+        .box14 form {
+
+            height: 335px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* #heading{
+           
+        }  */
+        .heading14 label {
+            height: 72px;
+            width: 492px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: x-large;
+            font-weight: bold;
+
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            background-color: blueviolet;
+
+            color: black;
+            box-shadow: 1px 1px 5px 3px black;
+            border-radius: 10px;
+        }
+
+
+
+
+        .text14 input {
+
+            border-radius: 15px;
+            height: 42px;
+            width: 387px;
+            box-shadow: 1px 1px 5px 3px black;
+
+        }
+
+
+
+        .text14 input[placeholder] {
+            font-size: large;
+            font-weight: bold;
+            text-align: center;
+
+
+        }
+
+        .submit14 input {
+            box-shadow: 1px 1px 5px 3px black;
+            background-color: brown;
+            color: black;
+            border-radius: 8px;
+            height: 45px;
+            width: 190px;
+            cursor: pointer;
+            position: absolute;
+            top: 201px;
+            right: 173px;
+        }
+
+        .submit14 input[type] {
+            font-size: xx-large;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .result14 h2 {
+            height: 134px;
+            width: 465px;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px 5px black;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: cursive;
+            font-size: x-large;
+            font-weight: bolder;
+            color: black;
+            margin: 0%;
+            position: absolute;
+            bottom: 22px;
+            right: 30px;
+            background-color: blueviolet;
+        }
+    </style>
+
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+
+    <div class="home">
+
+        <div class="content">
+            <p> FOUSES EDUCATION </p>
+            <p> MACHINE LEARNING WITH PYTHON INTERNSHIP</p>
+
+        </div>
+
+
+        <div class=header>
+            <p>covid 19 prediction for confirmed cases in Worldwide using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box">
+
+            <!-- form part -->
+            <form action="/predict" , method="post">
+
+                <div class="heading">
+                    <label for="myid">
+                        Enter the day which you wanted to
+                        predict confirmed cases in Worldwide
+
+                    </label>
+
+
+                </div>
+
+                <div class="text">
+                    <input type="text" name="date" id="myid" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit">
+
+                    <input class="btn btn-primary" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result">
+                    {% if prediction %}
+                    <h2 class="text-warning">{{prediction}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- covid19 prediction russia confiremd cases -->
+
+    <div class="home1">
+
+        <div class=header1>
+            <p>covid 19 prediction for confirmed cases in russia using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box1">
+
+            <!-- form part -->
+            <form action="/predict_russia_confirmed" , method="post">
+
+                <div class="heading1">
+                    <label for="myid1">
+                        Enter the day which you wanted to
+                        predict confirmed cases in russia
+
+                    </label>
+
+
+                </div>
+
+                <div class="text1">
+                    <input type="text" name="date1" id="myid1" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit1">
+
+                    <input class="btn btn-primary1" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result1">
+                    {% if prediction1 %}
+                    <h2 class="text-warning">{{prediction1}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- covid19 prediction russia Active cases -->
+
+    <div class="home2">
+
+        <div class=header2>
+            <p>covid 19 prediction for russia Active cases using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box2">
+
+            <!-- form part -->
+            <form action="/predict_russia_Active" , method="post">
+
+                <div class="heading2">
+                    <label for="myid2">
+                        Enter the day which you wanted to
+                        predict Active cases in russia
+
+                    </label>
+
+
+                </div>
+
+                <div class="text2">
+                    <input type="text" name="date2" id="myid2" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit2">
+
+                    <input class="btn btn-primary2" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result2">
+                    {% if prediction2 %}
+                    <h2 class="text-warning">{{prediction2}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- covid19 prediction russia deaths cases -->
+
+    <div class="home3">
+
+        <div class=header3>
+            <p>covid 19 prediction for russia deaths cases using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box3">
+
+            <!-- form part -->
+            <form action="/predict_russia_deaths" , method="post">
+
+                <div class="headings3">
+                    <label for="myid3">
+                        Enter the day which you wanted to
+                        predict deaths cases in russia
+
+                    </label>
+
+
+                </div>
+
+                <div class="text3">
+                    <input type="text" name="date3" id="myid3" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit3">
+
+                    <input class="btn btn-primary" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result3">
+                    {% if prediction3 %}
+                    <h2 class="text-warning">{{prediction3}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- covid19 prediction russia  Recovered-->
+
+    <div class="home7">
+
+        <div class=header7>
+            <p>covid 19 prediction for russia Recovered cases using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box7">
+
+            <!-- form part -->
+            <form action="/predict_russia_Recovered" , method="post">
+
+                <div class="headings7">
+                    <label for="myid7">
+                        Enter the day which you wanted to
+                        predict Recovered cases in russia
+
+                    </label>
+
+
+                </div>
+
+                <div class="text7">
+                    <input type="text" name="date7" id="myid7" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit7">
+
+                    <input class="btn btn-primary" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result7">
+                    {% if prediction7 %}
+                    <h2 class="text-warning">{{prediction7}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- covid19 prediction russia New  cases -->
+
+    <div class="home4">
+
+        <div class=header4>
+            <p>covid 19 prediction for russia New cases using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box4">
+
+            <!-- form part -->
+            <form action="/predict_russia_New_cases" , method="post">
+
+                <div class="headings4">
+                    <label for="myid4">
+                        Enter the day which you wanted to
+                        predict New cases in russia
+
+                    </label>
+
+
+                </div>
+
+                <div class="text4">
+                    <input type="text" name="date4" id="myid4" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit4">
+
+                    <input class="btn btn-primary" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result4">
+                    {% if prediction4 %}
+                    <h2 class="text-warning">{{prediction4}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- covid19 prediction russia New deaths -->
+
+    <div class="home5">
+
+        <div class=header5>
+            <p>covid 19 prediction for russia New deaths cases using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box5">
+
+            <!-- form part -->
+            <form action="/predict_russia_New_deaths" , method="post">
+
+                <div class="headings5">
+                    <label for="myid5">
+                        Enter the day which you wanted to
+                        predict New deaths cases in russia
+
+                    </label>
+
+
+                </div>
+
+                <div class="text5">
+                    <input type="text" name="date5" id="myid5" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit5">
+
+                    <input class="btn btn-primary" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result5">
+                    {% if prediction5 %}
+                    <h2 class="text-warning">{{prediction5}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+    <!-- covid19 prediction russia New Recovered-->
+
+    <div class="home6">
+
+        <div class=header6>
+            <p>covid 19 prediction for russia New Recovered cases using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box6">
+
+            <!-- form part -->
+            <form action="/predict_russia_New_Recovered" , method="post">
+
+                <div class="headings6">
+                    <label for="myid6">
+                        Enter the day which you wanted to
+                        predict New Recovered cases in russia
+
+                    </label>
+
+
+                </div>
+
+                <div class="text6">
+                    <input type="text" name="date6" id="myid6" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit6">
+
+                    <input class="btn btn-primary" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result6">
+                    {% if prediction6 %}
+                    <h2 class="text-warning">{{prediction6}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- covid19 prediction  Iran confirmed cases-->
+
+
+    <div class="home8">
+
+        <div class=header8>
+            <p>covid 19 prediction for confirmed cases in Iran using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box8">
+
+            <!-- form part -->
+            <form action="/predict_Iran_confirmed" , method="post">
+
+                <div class="heading8">
+                    <label for="myid8">
+                        Enter the day which you wanted to
+                        predict confirmed cases in Iran
+
+                    </label>
+
+
+                </div>
+
+                <div class="text8">
+                    <input type="text" name="date8" id="myid8" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit8">
+
+                    <input class="btn btn-primary" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result8">
+                    {% if prediction8 %}
+                    <h2 class="text-warning">{{prediction8}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- covid19 prediction confirmed cases uttar pradesh-->
+
+
+    <div class="home9">
+
+        <div class=header9>
+            <p>covid 19 prediction for confirmed cases in uttar pradesh using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box9">
+
+            <!-- form part -->
+            <form action="/predict_up_confirmed" , method="post">
+
+                <div class="heading9">
+                    <label for="myid9">
+                        Enter the day which you wanted to
+                        predict confirmed cases in uttar pradesh
+
+                    </label>
+
+
+                </div>
+
+                <div class="text9">
+                    <input type="text" name="date9" id="myid9" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit9">
+
+                    <input class="btn btn-primary" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result9">
+                    {% if prediction9 %}
+                    <h2 class="text-warning">{{prediction9}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- covid19 prediction Active cases uttar pradesh-->
+
+
+    <div class="home10">
+
+        <div class=header10>
+            <p>covid 19 prediction for Active cases in uttar pradesh using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box10">
+
+            <!-- form part -->
+            <form action="/predict_up_Active" , method="post">
+
+                <div class="heading10">
+                    <label for="myid10">
+                        Enter the day which you wanted to
+                        predict Active cases in uttar pradesh
+
+                    </label>
+
+
+                </div>
+
+                <div class="text10">
+                    <input type="text" name="date10" id="myid10" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit10">
+
+                    <input class="btn btn-primary" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result10">
+                    {% if prediction10 %}
+                    <h2 class="text-warning">{{prediction10}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+    <!-- covid19 prediction deaths cases utter pradesh-->
+
+
+    <div class="home11">
+
+        <div class=header11>
+            <p>covid 19 prediction for deaths cases in uttar pradesh using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box11">
+
+            <!-- form part -->
+            <form action="/predict_up_deaths" , method="post">
+
+                <div class="heading11">
+                    <label for="myid11">
+                        Enter the day which you wanted to
+                        predict deaths cases in uttar pradesh
+
+                    </label>
+
+
+                </div>
+
+                <div class="text11">
+                    <input type="text" name="date11" id="myid11" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit11">
+
+                    <input class="btn btn-primary" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result11">
+                    {% if prediction11 %}
+                    <h2 class="text-warning">{{prediction11}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- covid19 prediction Recovered  cases uttar pradesh-->
+
+
+    <div class="home12">
+
+        <div class=header12>
+            <p>covid 19 prediction for Recovered cases in uttar pradesh using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box12">
+
+            <!-- form part -->
+            <form action="/predict_up_Recovered" , method="post">
+
+                <div class="heading12">
+                    <label for="myid12">
+                        Enter the day which you wanted to
+                        predict Recovered cases in uttar pradesh
+
+                    </label>
+
+
+                </div>
+
+                <div class="text12">
+                    <input type="text" name="date12" id="myid12" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit12">
+
+                    <input class="btn btn-primary" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result12">
+                    {% if prediction12 %}
+                    <h2 class="text-warning">{{prediction12}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- covid19 prediction  New cases uttar pradesh-->
+
+
+    <div class="home13">
+
+        <div class=header13>
+            <p>covid 19 prediction for New cases in uttar pradesh using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box13">
+
+            <!-- form part -->
+            <form action="/predict_up_new_cases" , method="post">
+
+                <div class="heading13">
+                    <label for="myid13">
+                        Enter the day which you wanted to
+                        predict New cases in uttar pradesh
+
+                    </label>
+
+
+                </div>
+
+                <div class="text13">
+                    <input type="text" name="date13" id="myid13" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit13">
+
+                    <input class="btn btn-primary" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result13">
+                    {% if prediction13 %}
+                    <h2 class="text-warning">{{prediction13}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+    <!-- covid19 prediction New Recovered  cases uttar pradesh-->
+
+
+    <div class="home14">
+
+        <div class=header14>
+            <p>covid 19 prediction for new Recovered cases in uttar pradesh using polynomial regression project</p>
+
+
+        </div>
+
+        <div class="box14">
+
+            <!-- form part -->
+            <form action="/predict_up_New_Recovered" , method="post">
+
+                <div class="heading14">
+                    <label for="myid14">
+                        Enter the day which you wanted to
+                        predict new Recovered cases in uttar pradesh
+
+                    </label>
+
+
+                </div>
+
+                <div class="text14">
+                    <input type="text" name="date14" id="myid14" placeholder=" Example:(180th day,250th day,500th day)"
+                        required="required" />
+
+
+                </div>
+                <br>
+                <div class="submit14">
+
+                    <input class="btn btn-primary" type="submit" value="PREDICT">
+
+                </div>
+
+                <div class="result14">
+                    {% if prediction14%}
+                    <h2 class="text-warning">{{prediction14}}</h2>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
